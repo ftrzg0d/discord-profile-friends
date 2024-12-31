@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Friends</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+
+<body>
+    <div class="background-overlay"></div>
+
+    <div class="loading-screen">
+        <div class="background-grid"></div>
+        <div class="loading-content">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <div class="logo-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="logo-particles">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+                <div class="logo-ring"></div>
+            </div>
+            <h1 class="loading-title">Discord Friends</h1>
+            <p class="loading-subtitle">Conectando-se aos amigos...</p>
+            <button class="enter-button">
+                <div class="button-glow"></div>
+                <div class="button-content">
+                    <span>Entrar</span>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="button-particles"></div>
+            </button>
+        </div>
+    </div>
+
+    <div class="video-background">
+        <video autoplay loop muted playsinline>
+            <source src="/videos/seuvideo.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- feito por future -->
+
+    <div class="container hidden">
+        <div class="cards-container">
+            <% users.forEach(user => { %>
+                <div class="card" data-user-id="<%= user.id %>">
+                    <div class="card-shine"></div>
+                    <div class="card-content">
+                        <div class="profile-image">
+                            <img src="<%= user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}` : 'https://cdn.discordapp.com/embed/avatars/0.png' %>" alt="<%= user.username %>">
+                            <div class="status <%= user.status %>"></div>
+                        </div>
+
+                       
+
+                        <div class="user-info">
+                            <h2 class="display-name"><%= user.global_name || user.username %></h2>
+                            <p class="username">@<%= user.username %></p>
+                            
+                                                
+
+                            <div class="activities-wrapper">
+                                <% if (user.activities && user.activities.length > 0) { %>
+                                    <% user.activities.filter(activity => activity.type !== 4).forEach(activity => { %>
+                                        <% if (activity.type === 2) { %>
+                                            <div class="activity spotify-card">
+                                                <div class="spotify-activity">
+                                                    <% if (activity.imageUrl) { %>
+                                                        <img src="<%= activity.imageUrl %>" alt="Album Art">
+                                                    <% } else { %>
+                                                        <div class="icon-container spotify-icon"><%- activity.icon %></div>
+                                                    <% } %>
+                                                    <div class="spotify-info">
+                                                        <div class="song-name"><%= activity.details %></div>
+                                                        <div class="artist">por <%= activity.state %></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } else if (activity.type === 0) { %>
+                                            <div class="activity game-card">
+                                                <div class="game-activity">
+                                                    <% if (activity.name === 'Visual Studio Code') { %>
+                                                        <div class="icon-container vscode-icon"><%- activity.icon %></div>
+                                                        <div class="game-info">
+                                                            <div class="game-name"><%= activity.details %></div>
+                                                            <div class="details"><%= activity.state %></div>
+                                                        </div>
+                                                    <% } else { %>
+                                                        <% if (activity.imageUrl) { %>
+                                                            <img src="<%= activity.imageUrl %>" alt="Game Art">
+                                                        <% } else { %>
+                                                            <div class="icon-container game-icon"><%- activity.icon %></div>
+                                                        <% } %>
+                                                        <div class="game-info">
+                                                            <div class="game-name"><%= activity.name %></div>
+                                                            <% if (activity.details) { %>
+                                                                <div class="details"><%= activity.details %></div>
+                                                            <% } %>
+                                                        </div>
+                                                    <% } %>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    <% }); %>
+                                <% } else { %>
+                                    <div class="no-activity <%= user.status %>">
+                                        <div class="no-activity-content">
+                                            <div class="no-activity-status-icon">
+                                                <% if (user.status === 'online') { %>
+                                                    <i class="fas fa-circle"></i>
+                                                <% } else if (user.status === 'idle') { %>
+                                                    <i class="fas fa-moon"></i>
+                                                <% } else if (user.status === 'dnd') { %>
+                                                    <i class="fas fa-minus-circle"></i>
+                                                <% } else { %>
+                                                    <i class="fas fa-circle-minus"></i>
+                                                <% } %>
+                                            </div>
+                                            <p class="no-activity-text">
+                                                <%= user.status === 'online' ? 'Online' : 
+                                                   user.status === 'idle' ? 'Ausente' :
+                                                   user.status === 'dnd' ? 'Não perturbe' : 'Offline' %>
+                                            </p>
+                                            <p class="no-activity-subtext">Nenhuma atividade</p>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html> 
