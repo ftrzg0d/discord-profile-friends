@@ -1,10 +1,14 @@
-# Discord Friends Status Viewer
+# Discord Profile Friends
 ### Desenvolvido por Future 🌟
 
+<div align="center">
+  <img src="preview.png" alt="Preview do Projeto" width="800px">
+</div>
 
 Um elegante visualizador de status do Discord que exibe em tempo real as atividades dos seus amigos, incluindo músicas do Spotify, jogos e atividades do VS Code, com uma interface moderna e animada.
 
-
+## 🌟 Preview
+[Ver Demo](https://github.com/ftrzg0d/discord-profile-friends)
 
 ## ⚡ Funcionalidades
 
