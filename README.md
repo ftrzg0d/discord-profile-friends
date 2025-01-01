@@ -7,8 +7,7 @@
 
 Um elegante visualizador de status do Discord que exibe em tempo real as atividades dos seus amigos, incluindo músicas do Spotify, jogos e atividades do VS Code, com uma interface moderna e animada.
 
-## 🌟 Preview
-![Discord Multi-Tools Preview](https://imgur.com/AxdzwRM)
+
 
 ## ⚡ Funcionalidades
 
